@@ -1,3 +1,6 @@
+-- Drop the existing database if it exists
+DROP DATABASE IF EXISTS EcommerceDB;
+
 -- Create the database
 CREATE DATABASE EcommerceDB;
 USE EcommerceDB;
@@ -11,6 +14,11 @@ CREATE TABLE Customers (
     Phone VARCHAR(20)
 );
 
+CREATE TABLE Categories (
+    CategoryID INT PRIMARY KEY AUTO_INCREMENT,
+    CategoryName VARCHAR(50)
+);
+
 CREATE TABLE Products (
     ProductID INT PRIMARY KEY AUTO_INCREMENT,
     ProductName VARCHAR(100),
@@ -18,11 +26,6 @@ CREATE TABLE Products (
     Price DECIMAL(10, 2),
     StockQuantity INT,
     FOREIGN KEY (CategoryID) REFERENCES Categories(CategoryID)
-);
-
-CREATE TABLE Categories (
-    CategoryID INT PRIMARY KEY AUTO_INCREMENT,
-    CategoryName VARCHAR(50)
 );
 
 CREATE TABLE Orders (
@@ -84,7 +87,7 @@ CREATE TABLE Discounts (
     FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
 );
 
--- Insert Sample Data for Customers
+-- Insert Sample Data
 INSERT INTO Customers (CustomerID, Name, Email, Address, Phone) VALUES
 (1, 'John Doe', 'john@example.com', '123 Main St', '555-555-5555'),
 (2, 'Jane Smith', 'jane@example.com', '456 Elm St', '555-555-5556'),
@@ -137,7 +140,6 @@ INSERT INTO Customers (CustomerID, Name, Email, Address, Phone) VALUES
 (49, 'Victor Bell', 'victor@example.com', '4646 Cypress St', '555-555-5603'),
 (50, 'Willow Chapman', 'willow@example.com', '4747 Maple St', '555-555-5604');
 
--- Insert Sample Data for Categories
 INSERT INTO Categories (CategoryID, CategoryName) VALUES
 (1, 'Electronics'),
 (2, 'Books'),
@@ -148,7 +150,6 @@ INSERT INTO Categories (CategoryID, CategoryName) VALUES
 (7, 'Health & Personal Care'),
 (8, 'Automotive');
 
--- Insert Sample Data for Products
 INSERT INTO Products (ProductID, ProductName, CategoryID, Price, StockQuantity) VALUES
 (1, 'Laptop', 1, 999.99, 50),
 (2, 'Headphones', 1, 199.99, 150),
@@ -171,7 +172,6 @@ INSERT INTO Products (ProductID, ProductName, CategoryID, Price, StockQuantity) 
 (19, 'Smartwatch', 1, 199.99, 45),
 (20, 'Speaker', 1, 129.99, 55);
 
--- Insert Sample Data for Orders
 INSERT INTO Orders (OrderID, CustomerID, OrderDate, TotalAmount) VALUES
 (1, 1, '2023-07-01', 1199.98),
 (2, 2, '2023-07-02', 199.99),
@@ -274,7 +274,6 @@ INSERT INTO Orders (OrderID, CustomerID, OrderDate, TotalAmount) VALUES
 (99, 19, '2023-10-07', 9899.01),
 (100, 20, '2023-10-08', 9999.00);
 
--- Insert Sample Data for OrderDetails
 INSERT INTO OrderDetails (OrderDetailID, OrderID, ProductID, Quantity, UnitPrice) VALUES
 (1, 1, 1, 1, 999.99),
 (2, 1, 2, 1, 199.99),
@@ -377,7 +376,7 @@ INSERT INTO OrderDetails (OrderDetailID, OrderID, ProductID, Quantity, UnitPrice
 (99, 98, 19, 2, 199.99),
 (100, 99, 20, 1, 129.99);
 
--- Insert Sample Data for Reviews
+
 INSERT INTO Reviews (ReviewID, ProductID, CustomerID, Rating, Comment, ReviewDate) VALUES
 (1, 1, 1, 5, 'Great laptop!', '2023-07-05'),
 (2, 2, 2, 4, 'Good sound quality.', '2023-07-06'),
@@ -410,14 +409,12 @@ INSERT INTO Reviews (ReviewID, ProductID, CustomerID, Rating, Comment, ReviewDat
 (29, 9, 29, 5, 'Handy tool.', '2023-08-02'),
 (30, 10, 30, 4, 'Love the smartphone.', '2023-08-03');
 
--- Insert Sample Data for Suppliers
 INSERT INTO Suppliers (SupplierID, SupplierName, ContactInfo) VALUES
 (1, 'Tech Supplies Co.', '123 Supplier St'),
 (2, 'Books R Us', '456 Book Ln'),
 (3, 'Fashion Hub', '789 Style Rd'),
 (4, 'Health Mart', '101 Wellness Ave');
 
--- Insert Sample Data for ProductSuppliers
 INSERT INTO ProductSuppliers (ProductID, SupplierID) VALUES
 (1, 1),
 (1, 2),
@@ -461,8 +458,6 @@ INSERT INTO ProductSuppliers (ProductID, SupplierID) VALUES
 (20, 1),
 (20, 3);
 
-
--- Insert Sample Data for ShippingInfo
 INSERT INTO ShippingInfo (ShippingID, OrderID, ShippingAddress, ShippingDate) VALUES
 (1, 1, '123 Main St', '2023-07-03'),
 (2, 2, '456 Elm St', '2023-07-04'),
@@ -514,6 +509,15 @@ INSERT INTO ShippingInfo (ShippingID, OrderID, ShippingAddress, ShippingDate) VA
 (48, 48, '4545 Redwood St', '2023-08-19'),
 (49, 49, '4646 Cypress St', '2023-08-20'),
 (50, 50, '4747 Maple St', '2023-08-21');
+
+-- Insert Sample Data into Discounts Table
+INSERT INTO Discounts (DiscountID, DiscountDescription, DiscountAmount, ProductID) VALUES
+(1, 'Summer Sale', 50.00, 1),
+(2, 'Holiday Discount', 20.00, 2),
+(3, 'Black Friday Deal', 70.00, 3),
+(4, 'New Year Discount', 15.00, 4),
+(5, 'Cyber Monday Discount', 30.00, 5),
+(6, 'Clearance Sale', 10.00, 6);
 
 -- Test Queries
 SELECT * FROM Customers;
