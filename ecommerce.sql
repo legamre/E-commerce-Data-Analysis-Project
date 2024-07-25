@@ -420,25 +420,47 @@ INSERT INTO Suppliers (SupplierID, SupplierName, ContactInfo) VALUES
 -- Insert Sample Data for ProductSuppliers
 INSERT INTO ProductSuppliers (ProductID, SupplierID) VALUES
 (1, 1),
+(1, 2),
+(1, 3),
 (2, 1),
+(2, 2),
 (3, 2),
+(3, 3),
 (4, 3),
+(4, 4),
+(5, 1),
 (5, 3),
 (6, 4),
+(6, 2),
 (7, 4),
+(7, 1),
 (8, 4),
+(8, 3),
 (9, 1),
+(9, 2),
 (10, 1),
+(10, 4),
 (11, 1),
+(11, 3),
 (12, 2),
+(12, 3),
 (13, 3),
+(13, 1),
 (14, 3),
+(14, 2),
 (15, 4),
+(15, 1),
 (16, 4),
+(16, 2),
 (17, 4),
+(17, 1),
 (18, 1),
+(18, 4),
 (19, 1),
-(20, 1);
+(19, 2),
+(20, 1),
+(20, 3);
+
 
 -- Insert Sample Data for ShippingInfo
 INSERT INTO ShippingInfo (ShippingID, OrderID, ShippingAddress, ShippingDate) VALUES
