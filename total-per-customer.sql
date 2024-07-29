@@ -1,8 +1,12 @@
+WITH CustomerSales AS (
+    SELECT 
+        CustomerID,
+        SUM(TotalAmount) AS TotalSpent
+    FROM Orders
+    GROUP BY CustomerID
+)
 SELECT 
-    c.Name,
-    COUNT(o.OrderID) AS TotalOrders,
-    SUM(o.TotalAmount) AS TotalSpent
-FROM Customers c
-JOIN Orders o ON c.CustomerID = o.CustomerID
-GROUP BY c.Name
-ORDER BY TotalSpent DESC;
+    CustomerID,
+    TotalSpent,
+    RANK() OVER (ORDER BY TotalSpent DESC) AS CustomerRank
+FROM CustomerSales;
