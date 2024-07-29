@@ -1,11 +1,8 @@
--- Drop the existing database if it exists
 DROP DATABASE IF EXISTS EcommerceDB;
 
--- Create the database
 CREATE DATABASE EcommerceDB;
 USE EcommerceDB;
 
--- Create Tables
 CREATE TABLE Customers (
     CustomerID INT PRIMARY KEY AUTO_INCREMENT,
     Name VARCHAR(100),
@@ -87,7 +84,6 @@ CREATE TABLE Discounts (
     FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
 );
 
--- Insert Sample Data
 INSERT INTO Customers (CustomerID, Name, Email, Address, Phone) VALUES
 (1, 'John Doe', 'john@example.com', '123 Main St', '555-555-5555'),
 (2, 'Jane Smith', 'jane@example.com', '456 Elm St', '555-555-5556'),
@@ -510,7 +506,6 @@ INSERT INTO ShippingInfo (ShippingID, OrderID, ShippingAddress, ShippingDate) VA
 (49, 49, '4646 Cypress St', '2023-08-20'),
 (50, 50, '4747 Maple St', '2023-08-21');
 
--- Insert Sample Data into Discounts Table
 INSERT INTO Discounts (DiscountID, DiscountDescription, DiscountAmount, ProductID) VALUES
 (1, 'Summer Sale', 50.00, 1),
 (2, 'Holiday Discount', 20.00, 2),
