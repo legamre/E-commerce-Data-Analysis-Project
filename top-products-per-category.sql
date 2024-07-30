@@ -20,4 +20,4 @@ FROM (
         ROW_NUMBER() OVER (PARTITION BY ps.CategoryName ORDER BY ps.TotalSold DESC) AS `Rank`
     FROM ProductSales ps
 ) AS RankedProducts
-WHERE `Rank` <= 3;
+WHERE `Rank` = 1;
