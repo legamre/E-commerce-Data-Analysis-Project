@@ -1,6 +1,11 @@
 SELECT 
-    CustomerID, 
-    COUNT(OrderID) AS OrderCount
-FROM Orders
-GROUP BY CustomerID
-HAVING COUNT(OrderID) > 1;
+    OrderCount, 
+    COUNT(CustomerID) AS NumberOfCustomers
+FROM (
+    SELECT 
+        CustomerID, 
+        COUNT(OrderID) AS OrderCount
+    FROM Orders
+    GROUP BY CustomerID
+) AS CustomerOrderCounts
+GROUP BY OrderCount;
