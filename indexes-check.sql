@@ -1,5 +1,0 @@
-SHOW INDEX FROM Orders;
-
-SHOW INDEX FROM OrderDetails;
-
-SHOW INDEX FROM Reviews;
