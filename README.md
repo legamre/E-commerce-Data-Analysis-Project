@@ -1,0 +1,1 @@
+This repository contains all the code, SQL queries, and visualizations from my first portfolio project. The project involves creating an e-commerce database, analyzing the data using SQL, and visualizing the results using Tableau.
